@@ -17,9 +17,8 @@ class Solution {
             }
         }
         for (int p=0;p<10;p++) {
-            cows += Math.min(secretcount[p], guesscount[p]);
+            cows += Math.min(secretcount[p],guesscount[p]);
         }
-
-        return bulls + "A" + cows + "B";
+        return bulls+"A"+cows+"B";
     }
 }
