@@ -10,7 +10,6 @@ class Solution {
         Map<String, Character> map2 = new HashMap<>();
 
         for (int i = 0; i < pattern.length(); i++) {
-
             char ch = pattern.charAt(i);
             String word = words[i];
             if (map1.containsKey(ch)) {
@@ -18,13 +17,11 @@ class Solution {
                     return false;
                 }
             }
-
             if (map2.containsKey(word)) {
                 if (map2.get(word) != ch) {
                     return false;
                 }
             }
-
             map1.put(ch, word);
             map2.put(word, ch);
         }
