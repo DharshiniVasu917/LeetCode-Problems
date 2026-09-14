@@ -2,13 +2,10 @@ import java.util.*;
 
 class Solution {
     public boolean wordPattern(String pattern, String s) {
-
         String[] words = s.split(" ");
-
         if (pattern.length() != words.length) {
             return false;
         }
-
         Map<Character, String> map1 = new HashMap<>();
         Map<String, Character> map2 = new HashMap<>();
 
@@ -16,15 +13,12 @@ class Solution {
 
             char ch = pattern.charAt(i);
             String word = words[i];
-
-            // Check pattern character -> word
             if (map1.containsKey(ch)) {
                 if (!map1.get(ch).equals(word)) {
                     return false;
                 }
             }
 
-            // Check word -> pattern character
             if (map2.containsKey(word)) {
                 if (map2.get(word) != ch) {
                     return false;
