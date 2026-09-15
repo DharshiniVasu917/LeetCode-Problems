@@ -3,7 +3,6 @@ class WordDictionary {
         TrieNode[] children = new TrieNode[26];
         boolean isEnd = false;
     }
-
     private TrieNode root;
 
     public WordDictionary() {
@@ -28,13 +27,13 @@ class WordDictionary {
         if (index == word.length()) {
             return node.isEnd;
         }
-
         char c = word.charAt(index);
         if (c != '.') {
             int childIndex = c - 'a';
             if (node.children[childIndex] == null) {
                 return false;
             }
+            //
             return dfs(word, index + 1, node.children[childIndex]);
         }
         for (TrieNode child : node.children) {
