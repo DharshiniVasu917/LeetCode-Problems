@@ -1,59 +1,43 @@
 import java.util.*;
-
 class Twitter {
-
     static class Tweet {
         int tweetId;
         int time;
-
         Tweet(int tweetId, int time) {
             this.tweetId = tweetId;
             this.time = time;
         }
     }
-
     static class Node {
         int userId;
         int index;
         Tweet tweet;
-
         Node(int userId, int index, Tweet tweet) {
             this.userId = userId;
             this.index = index;
             this.tweet = tweet;
         }
     }
-
     private Map<Integer, List<Tweet>> tweets;
     private Map<Integer, Set<Integer>> following;
     private int time;
-
     public Twitter() {
         tweets = new HashMap<>();
         following = new HashMap<>();
         time = 0;
     }
-
     public void postTweet(int userId, int tweetId) {
-
         tweets.putIfAbsent(userId, new ArrayList<>());
-
         tweets.get(userId).add(
             new Tweet(tweetId, time++)
         );
     }
-
     public List<Integer> getNewsFeed(int userId) {
-
         List<Integer> result = new ArrayList<>();
-
         PriorityQueue<Node> pq = new PriorityQueue<>(
             (a, b) -> b.tweet.time - a.tweet.time
         );
-
-        // Include the user's own tweets
         addLatestTweet(userId, pq);
-
         // Include tweets of followed users
         if (following.containsKey(userId)) {
 
