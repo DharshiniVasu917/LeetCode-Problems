@@ -38,28 +38,18 @@ class Twitter {
             (a, b) -> b.tweet.time - a.tweet.time
         );
         addLatestTweet(userId, pq);
-        // Include tweets of followed users
         if (following.containsKey(userId)) {
-
             for (int followee : following.get(userId)) {
                 addLatestTweet(followee, pq);
             }
         }
-
-        // Get maximum 10 recent tweets
         while (!pq.isEmpty() && result.size() < 10) {
-
             Node current = pq.poll();
-
             result.add(current.tweet.tweetId);
-
             int nextIndex = current.index - 1;
-
             if (nextIndex >= 0) {
-
                 Tweet nextTweet =
                     tweets.get(current.userId).get(nextIndex);
-
                 pq.offer(
                     new Node(
                         current.userId,
@@ -69,25 +59,18 @@ class Twitter {
                 );
             }
         }
-
         return result;
     }
-
     private void addLatestTweet(
         int userId,
         PriorityQueue<Node> pq
     ) {
-
         if (!tweets.containsKey(userId)) {
             return;
         }
-
         List<Tweet> list = tweets.get(userId);
-
         if (!list.isEmpty()) {
-
             int lastIndex = list.size() - 1;
-
             pq.offer(
                 new Node(
                     userId,
@@ -97,13 +80,10 @@ class Twitter {
             );
         }
     }
-
     public void follow(int followerId, int followeeId) {
-
         if (followerId == followeeId) {
             return;
         }
-
         following
             .computeIfAbsent(
                 followerId,
@@ -111,9 +91,7 @@ class Twitter {
             )
             .add(followeeId);
     }
-
     public void unfollow(int followerId, int followeeId) {
-
         if (following.containsKey(followerId)) {
             following.get(followerId).remove(followeeId);
         }
