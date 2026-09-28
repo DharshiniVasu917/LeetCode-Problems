@@ -2,26 +2,16 @@ import java.util.*;
 
 class Solution {
     public String sortVowels(String s) {
-
         List<Character> vowels = new ArrayList<>();
-
-        // Store all vowels
         for (char ch : s.toCharArray()) {
             if (isVowel(ch)) {
                 vowels.add(ch);
             }
         }
-
-        // Sort vowels
         Collections.sort(vowels);
-
         StringBuilder result = new StringBuilder();
-
         int index = 0;
-
-        // Build the answer
         for (char ch : s.toCharArray()) {
-
             if (isVowel(ch)) {
                 result.append(vowels.get(index));
                 index++;
@@ -29,7 +19,6 @@ class Solution {
                 result.append(ch);
             }
         }
-
         return result.toString();
     }
 
