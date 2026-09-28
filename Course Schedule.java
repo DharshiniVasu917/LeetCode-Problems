@@ -2,18 +2,13 @@ import java.util.*;
 
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-
-        // Create adjacency list
         List<List<Integer>> graph = new ArrayList<>();
 
         for (int i = 0; i < numCourses; i++) {
             graph.add(new ArrayList<>());
         }
 
-        // In-degree of each course
         int[] indegree = new int[numCourses];
-
-        // Build graph
         for (int[] prerequisite : prerequisites) {
             int course = prerequisite[0];
             int pre = prerequisite[1];
@@ -22,7 +17,6 @@ class Solution {
             indegree[course]++;
         }
 
-        // Add courses with no prerequisites
         Queue<Integer> queue = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
